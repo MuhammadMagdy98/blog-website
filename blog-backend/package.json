@@ -1,0 +1,11 @@
+{
+  "name": "bun-add-@honojs/hono-pg-@drizzle-orm/postgres-js-redis-zod-dotenv-jsonwebtoken-bcrypt-i18next-i18next-http-middleware-vitest-eslint-prettier",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
