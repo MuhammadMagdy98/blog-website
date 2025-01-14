@@ -1,11 +1,30 @@
 {
-  "name": "bun-add-@honojs/hono-pg-@drizzle-orm/postgres-js-redis-zod-dotenv-jsonwebtoken-bcrypt-i18next-i18next-http-middleware-vitest-eslint-prettier",
-  "module": "index.ts",
+  "name": "blog-backend",
+  "version": "1.0.0",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "main": "index.ts",
+  "scripts": {
+    "start": "bun run index.ts",
+    "build": "bun build",
+    "test": "bun test"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.38.3",
+    "hono": "^4.6.16",
+    "i18next": "^24.2.1",
+    "i18next-http-middleware": "^3.7.1",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1",
+    "postgres": "^3.4.5",
+    "redis": "^4.7.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.16",
+    "eslint": "^9.18.0",
+    "prettier": "^3.4.2",
+    "vitest": "^2.1.8"
   }
 }

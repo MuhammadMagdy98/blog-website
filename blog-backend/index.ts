@@ -1,7 +1,17 @@
-import zod from 'zod';
+import { Hono } from 'hono'
+
+const app = new Hono()
+
+app.get('/', (c) => {
+  return c.text('Hello Hono!')
+})
 
 
-const schema = zod.object({
-  name: zod.string(),
-  age: zod.number(),
+
+app.post('/', async (c) => {
+
+  const data = await c.req.json();
+  console.log(data);
 });
+
+export default app
