@@ -1,14 +1,10 @@
 import { Hono } from 'hono';
-
+import authRouter from './routes/auth.routes';
 const app = new Hono();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!');
-});
+app.route('/auth', authRouter);
 
-app.post('/', async (c) => {
-  const data = await c.req.json();
-  console.log(data);
-});
+
+app.get('/', (c) => c.text('Hello World!'));
 
 export default app;
