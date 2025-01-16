@@ -4,6 +4,7 @@
 
 logs
 _.log
+*.log
 npm-debug.log_
 yarn-debug.log*
 yarn-error.log*
@@ -173,3 +174,5 @@ dist
 
 # Finder (MacOS) folder config
 .DS_Store
+
+.combined.log
