@@ -21,18 +21,6 @@ export async function registerHandler(c: Context) {
 
     const { username, email, password } = parsed.data;
 
-    // // Check if user already exists
-    // const existingUser = await c.env.db
-    //   .select()
-    //   .from(c.env.models.users)
-    //   .where(c.env.models.users.email.equals(email))
-    //   .limit(1)
-    //   .execute();
-
-    // if (existingUser.length > 0) {
-    //   return c.json({ error: 'User already exists' }, 409);
-    // }
-
     const newUser = await registerUser({ username, email, password });
 
     return c.json(

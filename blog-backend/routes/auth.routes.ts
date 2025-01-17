@@ -12,7 +12,6 @@ const authRouter = new Hono();
 // Public routes
 authRouter.post('/register', registerHandler);
 authRouter.post('/login', loginHandler);
-authRouter.post('/reset-password', resetPasswordHandler);
 
 // Protected routes
 authRouter.post('/logout', authMiddleware, logoutHandler);
