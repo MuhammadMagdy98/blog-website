@@ -21,10 +21,10 @@ export async function createCategoryHandler(c: Context) {
       return c.json({ error: parsed.error.flatten() }, 400);
     }
 
-    const { name, description } = parsed.data;
+    const { name } = parsed.data;
     const userId = c.get('userId') as number; 
 
-    const newCategory = await createCategory({ name, description, userId });
+    const newCategory = await createCategory({ name, userId });
 
     if (!newCategory) {
       return c.json({ error: 'Failed to create category' }, 500);
@@ -83,13 +83,12 @@ export async function updateCategoryHandler(c: Context) {
       return c.json({ error: parsed.error.flatten() }, 400);
     }
 
-    const { name, description } = parsed.data;
+    const { name } = parsed.data;
     const userId = c.get('userId') as number;
 
     const updatedCategory = await updateCategory({
       categoryId,
       name,
-      description,
       userId,
     });
 

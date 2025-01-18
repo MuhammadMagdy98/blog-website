@@ -3,7 +3,6 @@ import {
   registerHandler,
   loginHandler,
   logoutHandler,
-  resetPasswordHandler,
 } from '../controllers/auth.controller';
 import { authMiddleware } from '../middleware/auth.middleware';
 

@@ -74,25 +74,3 @@ export async function logoutHandler(c: Context) {
     return c.json({ error: 'Internal Server Error' }, 500);
   }
 }
-
-export async function resetPasswordHandler(c: Context) {
-  try {
-    const body = await c.req.json();
-    const parsed = resetPasswordSchema.safeParse(body);
-    if (!parsed.success) {
-      return c.json({ error: parsed.error.errors }, 400);
-    }
-
-    const { email, newPassword } = parsed.data;
-
-    const success = await resetPassword(email, newPassword);
-    if (!success) {
-      return c.json({ error: 'User not found' }, 404);
-    }
-
-    return c.json({ message: 'Password reset successfully' }, 200);
-  } catch (error) {
-    console.error('Reset Password Error:', error);
-    return c.json({ error: 'Internal Server Error' }, 500);
-  }
-}

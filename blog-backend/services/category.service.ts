@@ -1,28 +1,26 @@
 import { db } from '../db/db';
-import { categories, Category } from '../models/categories';
+import { categories } from '../models/categories';
 import { eq } from 'drizzle-orm';
 import logger from '../utils/logger';
+import { posts } from '../models';
 
 interface CreateCategoryInput {
   name: string;
-  description?: string;
   userId: number;
 }
 
 interface UpdateCategoryInput {
   categoryId: number;
-  name?: string;
-  description?: string;
+  name: string;
   userId: number;
 }
 
-export async function createCategory(input: CreateCategoryInput): Promise<Category | null> {
+export async function createCategory(input: CreateCategoryInput) {
   try {
     const newCategory = await db
       .insert(categories)
       .values({
         name: input.name,
-        description: input.description,
         userId: input.userId,
       })
       .returning();
@@ -35,7 +33,7 @@ export async function createCategory(input: CreateCategoryInput): Promise<Catego
   }
 }
 
-export async function getAllCategories(): Promise<Category[]> {
+export async function getAllCategories() {
   try {
     const allCategories = await db
       .select()
@@ -49,7 +47,7 @@ export async function getAllCategories(): Promise<Category[]> {
   }
 }
 
-export async function getCategoryById(categoryId: number): Promise<Category | null> {
+export async function getCategoryById(categoryId: number){
   try {
     const category = await db
       .select()
@@ -66,8 +64,8 @@ export async function getCategoryById(categoryId: number): Promise<Category | nu
   }
 }
 
-export async function updateCategory(input: UpdateCategoryInput): Promise<Category | null> {
-  const { categoryId, name, description, userId } = input;
+export async function updateCategory(input: UpdateCategoryInput) {
+  const { categoryId, name, userId } = input;
   try {
     // Check if the category exists and belongs to the user
     const existingCategory = await db
@@ -91,7 +89,6 @@ export async function updateCategory(input: UpdateCategoryInput): Promise<Catego
       .update(categories)
       .set({
         name: name ?? existingCategory[0].name,
-        description: description ?? existingCategory[0].description,
         updatedAt: new Date(),
       })
       .where(eq(categories.id, categoryId))
@@ -128,9 +125,8 @@ export async function deleteCategory(categoryId: number, userId: number): Promis
     // For example, set their categoryId to null or reassign to a default category
     // Here, we'll delete all posts associated with the category
     await db
-      .delete()
-      .from('posts') // Assuming 'posts' table is accessible
-      .where(eq('category_id', categoryId))
+      .delete(posts)
+      .where(eq(posts.categoryId, categoryId))
       .execute();
 
     // Delete the category
