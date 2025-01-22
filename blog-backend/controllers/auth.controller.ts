@@ -13,6 +13,7 @@ import {
 
 export async function registerHandler(c: Context) {
   try {
+    console.log('Register Handler');
     const body = await c.req.json();
     const parsed = registerSchema.safeParse(body);
     if (!parsed.success) {

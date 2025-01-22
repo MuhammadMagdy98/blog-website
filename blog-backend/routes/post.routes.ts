@@ -1,10 +1,10 @@
 import { Hono } from 'hono';
 import {
   createPostHandler,
-//   getPostsHandler,
-//   getPostHandler,
-//   updatePostHandler,
-//   deletePostHandler,
+  getPostsHandler,
+  getPostByIdHandler,
+  editPostHandler,
+  deletePostHandler,
 } from '../controllers/post.controller';
 import { authMiddleware } from '../middleware/auth.middleware';
 
@@ -12,9 +12,9 @@ const postRouter = new Hono();
 
 // Routes for posts
 postRouter.post('/', authMiddleware, createPostHandler);
-// postRouter.get('/', getPostsHandler);
-// postRouter.get('/:postId', getPostHandler);
-// postRouter.put('/:postId', updatePostHandler);
-// postRouter.delete('/:postId', deletePostHandler);
+postRouter.get('/', getPostsHandler);
+postRouter.get('/:postId', getPostByIdHandler);
+postRouter.put('/:postId', authMiddleware, editPostHandler);
+postRouter.delete('/:postId', authMiddleware, deletePostHandler);
 
 export default postRouter;
