@@ -50,7 +50,7 @@ export async function editPostHandler(c: Context) {
     return c.json({ message: 'Post updated successfully', post: updatedPost }, 200);
   } catch (error) {
     console.error('Edit Post Error:', error);
-    return c.json({ error: error.message }, error.message === 'Unauthorized' ? 403 : 400);
+    return c.json({ error: error },  400);
   }
 }
 
@@ -65,7 +65,7 @@ export async function deletePostHandler(c: Context) {
     return c.json({ message: 'Post deleted successfully', post: deletedPost }, 200);
   } catch (error) {
     console.error('Delete Post Error:', error);
-    return c.json({ error: error.message }, error.message === 'Unauthorized' ? 403 : 400);
+    return c.json({ error: error },  400);
   }
 }
 

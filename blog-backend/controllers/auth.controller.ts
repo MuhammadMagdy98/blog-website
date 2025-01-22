@@ -2,13 +2,11 @@ import { type Context } from 'hono';
 import {
   registerSchema,
   loginSchema,
-  resetPasswordSchema,
 } from '../validators/auth.validator';
 import {
   registerUser,
   loginUser,
   logoutUser,
-  resetPassword,
 } from '../services/auth.service';
 
 export async function registerHandler(c: Context) {
@@ -50,7 +48,6 @@ export async function loginHandler(c: Context) {
       return c.json({ error: 'Invalid credentials' }, 401);
     }
 
-    // Return token, you might want to set it in an HttpOnly cookie instead
     return c.json({ token }, 200);
   } catch (error) {
     console.error('Login Error:', error);

@@ -61,7 +61,7 @@ export async function updateCommentHandler(c: Context) {
     return c.json({ message: 'Comment updated successfully', comment: updatedComment }, 200);
   } catch (error) {
     console.error('Update Comment Error:', error);
-    return c.json({ error: error.message }, error.message.includes('not authorized') ? 403 : 400);
+    return c.json({ error: error },  400);
   }
 }
 
@@ -79,7 +79,7 @@ export async function deleteCommentHandler(c: Context) {
     return c.json({ message: 'Comment deleted successfully', comment: deletedComment }, 200);
   } catch (error) {
     console.error('Delete Comment Error:', error);
-    return c.json({ error: error.message }, error.message.includes('not authorized') ? 403 : 400);
+    return c.json({ error: error },  400);
   }
 }
 

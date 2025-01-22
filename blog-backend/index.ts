@@ -14,18 +14,7 @@ app.route('/posts', postRouter);
 app.route('/comments', commentRouter);
 app.route('/tags', tagRouter);
 
-app.use(
-  '*',
-  cors({
-    origin: '*', 
-    allowMethods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowHeaders: ['Content-Type', 'Authorization'], 
-    maxAge: 600, 
-  })
-);
-
 app.get('/', (c) => c.text('Hello World!'));
-serve({
-  fetch: app.fetch,
-  port: 8787,
-});
+
+
+export default app;

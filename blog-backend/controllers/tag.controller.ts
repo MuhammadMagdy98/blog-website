@@ -51,7 +51,7 @@ export async function updateTagHandler(c: Context) {
     return c.json({ message: 'Tag updated successfully', tag: updatedTag }, 200);
   } catch (error) {
     console.error('Update Tag Error:', error);
-    return c.json({ error: error.message }, error.message.includes('not authorized') ? 403 : 400);
+    return c.json({ error: error},  400);
   }
 }
 
@@ -69,6 +69,6 @@ export async function deleteTagHandler(c: Context) {
     return c.json({ message: 'Tag deleted successfully', tag: deletedTag }, 200);
   } catch (error) {
     console.error('Delete Tag Error:', error);
-    return c.json({ error: error.message }, error.message.includes('not authorized') ? 403 : 400);
+    return c.json({ error: error},  400);
   }
 }

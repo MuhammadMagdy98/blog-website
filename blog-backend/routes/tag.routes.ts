@@ -5,12 +5,13 @@ import {
   updateTagHandler,
   deleteTagHandler,
 } from '../controllers/tag.controller';
+import { authMiddleware } from '../middleware/auth.middleware';
 
 const tagRouter = new Hono();
 
-tagRouter.post('/', createTagHandler); // Create a tag
+tagRouter.post('/', authMiddleware, createTagHandler); // Create a tag
 tagRouter.get('/', getTagsHandler); // Get all tags
-tagRouter.put('/', updateTagHandler); // Update a tag
-tagRouter.delete('/:tagId', deleteTagHandler); // Delete a tag
+tagRouter.put('/', authMiddleware, updateTagHandler); // Update a tag
+tagRouter.delete('/:tagId', authMiddleware, deleteTagHandler); // Delete a tag
 
 export default tagRouter;
